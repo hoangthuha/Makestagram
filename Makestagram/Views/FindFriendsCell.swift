@@ -27,7 +27,9 @@ class FindFriendsCell : UITableViewCell {
         followButton.clipsToBounds = true
         
         followButton.setTitle("Follow", for: .normal)
-        followButton.setTitle("Following", for: .selected)
+        
+        
+        
     }
     
     @IBAction func followButtonTapped(_ sender: UIButton) {
@@ -36,7 +38,9 @@ class FindFriendsCell : UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+        followButton.setTitleColor(.black, for: .selected)
+        followButton.setTitle("Following", for: .selected)
+        followButton.backgroundColor = .white
         // Configure the view for the selected state
     }
 }

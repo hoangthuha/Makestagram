@@ -37,6 +37,6 @@ extension UIColor {
 extension UIFont {
     //let font = UIFot.mgRelular
     static var mgRegular: UIFont {
-        return UIFont(name: "OpenSans", size: 16)!
+        return UIFont(name: "OpenSans-Regular", size: 16)!
     }
 }

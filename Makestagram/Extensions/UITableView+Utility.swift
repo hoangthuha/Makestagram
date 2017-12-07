@@ -22,7 +22,7 @@ extension UITableViewCell: CellIdentifiable {
 }
 
 extension UITableView {
-    func dequeueReusableCell<T: UITableViewCell>() -> T where T: CellIdentifiable {
+    func dequeueReusableCell<T: UITableViewCell>() -> T where T : CellIdentifiable {
         guard let cell = dequeueReusableCell(withIdentifier: T.cellIdentifier) as? T else {
             fatalError("Error dequeuing cell for identifier \(T.cellIdentifier)")
         }

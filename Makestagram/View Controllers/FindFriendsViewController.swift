@@ -10,9 +10,9 @@ import UIKit
 
 class FindFriendsViewController: UIViewController {
     
-    var users = [User]()
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,10 @@ class FindFriendsViewController: UIViewController {
         
         UserService.usersExcludingCurrentUser { [unowned self] (users) in
             self.users = users
-            DispatchQueue.main.async {
+            
+            //DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
+            //}
         }
     }
     @IBAction func dismissButtonTapped(_ sender: Any) {
@@ -38,9 +39,20 @@ class FindFriendsViewController: UIViewController {
     }
 }
 
-extension FindFriendsViewController : UITableViewDataSource {
+extension FindFriendsViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FindFriendsCell") as! FindFriendsCell
+        cell.delegate = self
+        configure(cell: cell, atIndexPath: indexPath)
+        
+        return cell
+        
     }
     
     func configure(cell: FindFriendsCell, atIndexPath indexPath: IndexPath) {
@@ -49,17 +61,13 @@ extension FindFriendsViewController : UITableViewDataSource {
         cell.usernameLabel.text = user.username
         cell.followButton.isSelected = user.isFollowed
     }
+    
 }
 
 extension FindFriendsViewController: UITableViewDelegate {
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FindFriendsCell") as! FindFriendsCell
-        cell.delegate = self
-        configure(cell: cell, atIndexPath: indexPath)
-        
-        return cell
-    }
+    
 }
+
 extension FindFriendsViewController: FindFriendsCellDelegate {
     func didTapFollowButton(_ followButton: UIButton, on cell: FindFriendsCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
@@ -79,5 +87,3 @@ extension FindFriendsViewController: FindFriendsCellDelegate {
         }
     }
 }
-
-

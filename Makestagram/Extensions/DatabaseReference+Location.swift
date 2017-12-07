@@ -58,6 +58,9 @@ extension DatabaseReference {
             }
         }
     }
+}
+
+extension DatabaseReference {
     
     static func toLocation(_ location: MGLocation) -> DatabaseReference {
         return location.asDatabaseReference()

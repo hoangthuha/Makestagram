@@ -124,7 +124,20 @@ struct UserService {
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot]
                 else { return completion([]) }
             
-            let users = snapshot.flatMap(User.init).filter { $0.uid != currentUser.uid }
+            print(snapshot.debugDescription)
+            
+            var users = [User]()
+            
+            for single in snapshot {
+                if let user = User.init(snapshot: single) {
+                    if user.uid != currentUser.uid {
+                        users.append(user)
+                    }
+                }
+            }
+            
+//            let users = snapshot.flatMap(User.init).filter { $0.uid != currentUser.uid }
+            print(users)
             
             let dispatchGroup = DispatchGroup()
             users.forEach { (user) in
@@ -148,7 +161,7 @@ struct UserService {
                                          "following_count" : 0,
                                          "post_count" : 0]
         
-        let ref = Database.database().reference().child("user").child(firUser.uid)
+        let ref = Database.database().reference().child("users").child(firUser.uid)
         ref.setValue(userAttrs) {(error, ref) in
             if let error = error {
                 assertionFailure(error.localizedDescription)

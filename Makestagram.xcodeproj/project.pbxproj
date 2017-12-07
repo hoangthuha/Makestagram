@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		601898431FD9221F0009B827 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601898421FD91F370009B827 /* GoogleService-Info.plist */; };
 		604C892E1FD0F98700493A68 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C892D1FD0F98700493A68 /* LikeService.swift */; };
 		60817B8D1FD4ED53002B937D /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60817B8C1FD4ED53002B937D /* FollowService.swift */; };
 		60817B911FD4EFA9002B937D /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60817B901FD4EFA9002B937D /* FindFriends.storyboard */; };
@@ -42,7 +43,6 @@
 		60E8A4D61FCE4896000C5401 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60E8A4D51FCE4896000C5401 /* Assets.xcassets */; };
 		60E8A5031FCE55E7000C5401 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8A4F61FCE54FF000C5401 /* Main.storyboard */; };
 		60E8A5051FCE55E7000C5401 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8A5011FCE5500000C5401 /* LaunchScreen.storyboard */; };
-		60E8A5071FCE589A000C5401 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60E8A5061FCE587A000C5401 /* GoogleService-Info.plist */; };
 		60E8A5091FCE5985000C5401 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60E8A5081FCE5985000C5401 /* Login.storyboard */; };
 		60E8A50B1FCE59C3000C5401 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8A50A1FCE59C2000C5401 /* LoginViewController.swift */; };
 		60E8A50D1FCE6B06000C5401 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E8A50C1FCE6B06000C5401 /* User.swift */; };
@@ -68,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		40C5C7C4869C844CBDA31FB5 /* Pods-Makestagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makestagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Makestagram/Pods-Makestagram.debug.xcconfig"; sourceTree = "<group>"; };
+		601898421FD91F370009B827 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		604C892D1FD0F98700493A68 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		60817B8C1FD4ED53002B937D /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		60817B901FD4EFA9002B937D /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		60E8A4F61FCE54FF000C5401 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		60E8A5001FCE5500000C5401 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60E8A5011FCE5500000C5401 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		60E8A5061FCE587A000C5401 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60E8A5081FCE5985000C5401 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		60E8A50A1FCE59C2000C5401 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		60E8A50C1FCE6B06000C5401 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Makestagram/Models/User.swift; sourceTree = SOURCE_ROOT; };
@@ -206,7 +206,7 @@
 				60E8A5081FCE5985000C5401 /* Login.storyboard */,
 			);
 			name = Storyboards;
-			path = /Users/hoangthuha/Desktop/iOS/Makestagram/Makestagram/Storyboards;
+			path = /Users/hoangthuha/Desktop/Makestagram/Makestagram/Storyboards;
 			sourceTree = "<absolute>";
 		};
 		60E8A4F81FCE54FF000C5401 /* Models */ = {
@@ -218,7 +218,7 @@
 				60817BC61FD687DA002B937D /* Message.swift */,
 			);
 			name = Models;
-			path = /Users/hoangthuha/Desktop/iOS/Makestagram/Makestagram/Models;
+			path = /Users/hoangthuha/Desktop/Makestagram/Makestagram/Models;
 			sourceTree = "<absolute>";
 		};
 		60E8A4FA1FCE54FF000C5401 /* View Controllers */ = {
@@ -235,7 +235,7 @@
 				60817BCE1FD692AE002B937D /* ChatViewController.swift */,
 			);
 			name = "View Controllers";
-			path = "/Users/hoangthuha/Desktop/iOS/Makestagram/Makestagram/View Controllers";
+			path = "/Users/hoangthuha/Desktop/Makestagram/Makestagram/View Controllers";
 			sourceTree = "<absolute>";
 		};
 		60E8A4FD1FCE5500000C5401 /* Extensions */ = {
@@ -249,7 +249,7 @@
 				60817BB91FD638B1002B937D /* UIColor+Utility.swift */,
 			);
 			name = Extensions;
-			path = /Users/hoangthuha/Desktop/iOS/Makestagram/Makestagram/Extensions;
+			path = /Users/hoangthuha/Desktop/Makestagram/Makestagram/Extensions;
 			sourceTree = "<absolute>";
 		};
 		60E8A4FE1FCE5500000C5401 /* Helpers */ = {
@@ -259,19 +259,19 @@
 				60817B981FD53F56002B937D /* MGPaginationHelper.swift */,
 			);
 			name = Helpers;
-			path = /Users/hoangthuha/Desktop/iOS/Makestagram/Makestagram/Helpers;
+			path = /Users/hoangthuha/Desktop/Makestagram/Makestagram/Helpers;
 			sourceTree = "<absolute>";
 		};
 		60E8A5021FCE5500000C5401 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				60E8A5061FCE587A000C5401 /* GoogleService-Info.plist */,
+				601898421FD91F370009B827 /* GoogleService-Info.plist */,
 				60E8A5001FCE5500000C5401 /* Info.plist */,
 				60E8A5011FCE5500000C5401 /* LaunchScreen.storyboard */,
 				60E8A5131FCEB508000C5401 /* Constants.swift */,
 			);
 			name = "Supporting Files";
-			path = "/Users/hoangthuha/Desktop/iOS/Makestagram/Makestagram/Supporting Files";
+			path = "/Users/hoangthuha/Desktop/Makestagram/Makestagram/Supporting Files";
 			sourceTree = "<absolute>";
 		};
 		60E8A5101FCE9046000C5401 /* Services */ = {
@@ -381,8 +381,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601898431FD9221F0009B827 /* GoogleService-Info.plist in Resources */,
 				60817BB41FD55A2F002B937D /* OpenSans-Light.ttf in Resources */,
-				60E8A5071FCE589A000C5401 /* GoogleService-Info.plist in Resources */,
 				60817BB51FD55A2F002B937D /* OpenSans-LightItalic.ttf in Resources */,
 				60E8A5031FCE55E7000C5401 /* Main.storyboard in Resources */,
 				60817BB71FD55A2F002B937D /* OpenSans-Semibold.ttf in Resources */,

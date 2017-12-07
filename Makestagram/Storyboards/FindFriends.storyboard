@@ -37,10 +37,15 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-Mp-6GM">
                                                     <rect key="frame" x="250" y="10" width="115" height="50.5"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="115" id="XDo-8c-sTj"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="followButtonTapped:" destination="Vse-PU-0xt" eventType="touchUpInside" id="SzU-2C-YGU"/>
                                                     </connections>
@@ -56,7 +61,7 @@
                                                 <constraint firstItem="UxX-1E-QZF" firstAttribute="top" secondItem="rRk-ju-afh" secondAttribute="top" id="x3D-Hd-Smh"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="followButton" destination="VrZ-Mp-6GM" id="Pec-zk-TiZ"/>
                                             <outlet property="usernameLabel" destination="UxX-1E-QZF" id="Khw-R4-dFX"/>
