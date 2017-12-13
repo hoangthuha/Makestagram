@@ -27,21 +27,19 @@ class FindFriendsCell : UITableViewCell {
         followButton.clipsToBounds = true
         
         followButton.setTitle("Follow", for: .normal)
-        
-        
-        
+        followButton.setTitleColor(.white, for: .normal)
+        followButton.setTitle("Following", for: .selected)
+        followButton.setTitleColor(.black, for: .selected)
     }
     
     @IBAction func followButtonTapped(_ sender: UIButton) {
         delegate?.didTapFollowButton(sender, on: self)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        followButton.setTitleColor(.black, for: .selected)
-        followButton.setTitle("Following", for: .selected)
-        followButton.backgroundColor = .white
-        // Configure the view for the selected state
+        
+        if sender.isSelected {
+            followButton.backgroundColor = .white
+        } else {
+            followButton.backgroundColor = UIColor.init(red: 3/255, green: 121/255, blue: 251/255, alpha: 1)
+        }
     }
 }
 

@@ -21,6 +21,6 @@ target 'Makestagram' do
 
   pod 'JSQMessagesViewController'
 
-  pod 'Kingfisher', '~> 4.0'
+  pod 'Kingfisher'
 
 end

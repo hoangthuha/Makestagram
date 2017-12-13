@@ -61,6 +61,6 @@ class Post : MGKeyed {
         self.imageHeight = imageHeight
         self.creationDate = Date()
         self.likeCount = 0
-        self.poster = User.current
+        self.poster = User.current!
     }
 }

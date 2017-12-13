@@ -30,12 +30,15 @@ class CreateUsernameViewController: UIViewController {
                 else { return }
             User.setCurrent(user, writeToUserDefaults: true)
             
-            //            let storyboard = UIStoryboard(name: "Main", bundle: .main)
-            //            if let initialViewController = storyboard.instantiateInitialViewController() {
-            
-            let initialViewController = UIStoryboard.initialViewController(for: .main)
-            self.view.window?.rootViewController = initialViewController
-            self.view.window?.makeKeyAndVisible()
+            FollowService.setIsFollowing(true, fromCurrentUserTo: User.current!, success: { (success) in
+                if success {
+                    let initialViewController = UIStoryboard.initialViewController(for: .main)
+                    self.view.window?.rootViewController = initialViewController
+                    self.view.window?.makeKeyAndVisible()
+                } else {
+                    fatalError()
+                }
+            })
             
             print("Create new user: \(user.username)")
         }

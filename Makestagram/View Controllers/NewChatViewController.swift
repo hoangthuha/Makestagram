@@ -87,7 +87,7 @@ extension NewChatViewController {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "toChat", let destination = segue.destination as? ChatViewController, let selectedUser = selectedUser {
-            let members = [selectedUser, User.current]
+            let members = [selectedUser, User.current!]
             destination.chat = existingChat ?? Chat(members: members)
         }
     }

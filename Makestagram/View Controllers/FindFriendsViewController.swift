@@ -17,8 +17,8 @@ class FindFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.allowsSelection = false
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 71
     }
@@ -27,14 +27,10 @@ class FindFriendsViewController: UIViewController {
         
         UserService.usersExcludingCurrentUser { [unowned self] (users) in
             self.users = users
-            
-            //DispatchQueue.main.async {
-                self.tableView.reloadData()
-            //}
+            self.tableView.reloadData()
         }
     }
     @IBAction func dismissButtonTapped(_ sender: Any) {
-        print("dismiss")
         navigationController?.dismiss(animated: true)
     }
 }
@@ -46,26 +42,18 @@ extension FindFriendsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "FindFriendsCell") as! FindFriendsCell
         cell.delegate = self
         configure(cell: cell, atIndexPath: indexPath)
-        
         return cell
-        
     }
     
     func configure(cell: FindFriendsCell, atIndexPath indexPath: IndexPath) {
         let user = users[indexPath.row]
-        
         cell.usernameLabel.text = user.username
         cell.followButton.isSelected = user.isFollowed
+        cell.followButton.backgroundColor = user.isFollowed ? .white : UIColor.init(red: 3/255, green: 121/255, blue: 251/255, alpha: 1)
     }
-    
-}
-
-extension FindFriendsViewController: UITableViewDelegate {
-    
 }
 
 extension FindFriendsViewController: FindFriendsCellDelegate {
@@ -76,9 +64,7 @@ extension FindFriendsViewController: FindFriendsCellDelegate {
         let followee = users[indexPath.row]
         
         FollowService.setIsFollowing(!followee.isFollowed, fromCurrentUserTo: followee) { (success) in
-            defer {
-                followButton.isUserInteractionEnabled = true
-            }
+            followButton.isUserInteractionEnabled = true
             
             guard success else { return }
             

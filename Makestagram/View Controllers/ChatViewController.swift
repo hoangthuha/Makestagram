@@ -53,8 +53,8 @@ class ChatViewController: JSQMessagesViewController {
     
     func setupJSQMessagesViewController() {
         
-        senderId = User.current.uid
-        senderDisplayName = User.current.username
+        senderId = User.current!.uid
+        senderDisplayName = User.current!.username
         title = chat.title
         
         inputToolbar.contentView.leftBarButtonItem = nil

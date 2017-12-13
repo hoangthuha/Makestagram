@@ -51,7 +51,7 @@ class Message {
     init(content: String) {
         self.content = content
         self.timestamp = Date()
-        self.sender = User.current
+        self.sender = User.current!
     }
 }
 

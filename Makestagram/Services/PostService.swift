@@ -17,8 +17,8 @@ struct PostService {
         let flaggedPostRef = Database.database().reference().child("flaggedPosts").child(postKey)
         let flaggedDict = ["image_url": post.imageURL,
                            "poster_uid": post.poster.uid,
-                           "reporter_uid": User.current.uid]
-    
+                           "reporter_uid": User.current!.uid]
+        
         flaggedPostRef.updateChildValues(flaggedDict)
         
         let flagCountRef = flaggedPostRef.child("flag_count")
@@ -31,7 +31,7 @@ struct PostService {
         })
     }
     
-    static func create (for image : UIImage) {
+    static func create(for image : UIImage) {
         let imageRef = StorageReference.newPostImageReference()
         StorageService.uploadImage(image, at: imageRef) { (downloadURL) in
             guard let downloadURL = downloadURL else { return}
@@ -43,40 +43,34 @@ struct PostService {
     
     static func show(forKey postKey: String, posterUID: String, completion: @escaping (Post?) -> Void) {
         let ref = Database.database().reference().child("posts").child(posterUID).child(postKey)
+        
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let post = Post(snapshot: snapshot) else {
                 return completion(nil)
             }
-            completion(post)
+            
+            LikeService.isPostLiked(post) { (isLiked) in
+                post.isLiked = isLiked
+                completion(post)
+            }
         })
     }
     
     private static func create (forURLString urlString : String, aspectHeight : CGFloat) {
-        let currentUser = User.current
+        let currentUser = User.current!
         let post = Post(imageURL: urlString, imageHeight: aspectHeight)
-        let rootRef = DatabaseReference.MGLocation.root.asDatabaseReference()
-        let newPostRef = rootRef.child("posts").child(currentUser.uid).childByAutoId()
-        let newPostKey = newPostRef.key
-        UserService.followers(for: currentUser) { (followerUIDs) in
-            let timelinePostDict = ["poster_uid" : currentUser.uid]
-            var updatedData: [String : Any] = ["timeline/\(currentUser.uid)/\(newPostKey)" : timelinePostDict]
-            for uid in followerUIDs {
-                updatedData["timeline/\(uid)/\(newPostKey)"] = timelinePostDict
+        let dict = post.dictValue
+        let postRef = Database.database().reference().child("posts").child(currentUser.uid).childByAutoId()
+        postRef.updateChildValues(dict)
+        
+        Database.database().reference().child("users").child(currentUser.uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let user = User.init(snapshot: snapshot) {
+                user.postCount = user.postCount! + 1
+                Database.database().reference().child("users").child(currentUser.uid).updateChildValues(user.dictValue)
+                User.setCurrent(user)
+                User.postCountChange()
             }
-            let postDict = post.dictValue
-            updatedData["posts/\(currentUser.uid)/\(newPostKey)"] = postDict
-            
-            rootRef.updateChildValues(updatedData, withCompletionBlock: { (error, ref) in
-                let postCountRef = Database.database().reference().child("users").child(currentUser.uid).child("post_count")
-                
-                postCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                    let currentCount = mutableData.value as? Int ?? 0
-                    
-                    mutableData.value = currentCount + 1
-                    
-                    return TransactionResult.success(withValue: mutableData)
-                })
-            })
         }
+        
     }
 }

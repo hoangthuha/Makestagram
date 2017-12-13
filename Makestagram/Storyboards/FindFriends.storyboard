@@ -35,16 +35,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-Mp-6GM">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-Mp-6GM">
                                                     <rect key="frame" x="250" y="10" width="115" height="50.5"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="115" id="XDo-8c-sTj"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Follow">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="followButtonTapped:" destination="Vse-PU-0xt" eventType="touchUpInside" id="SzU-2C-YGU"/>
@@ -80,7 +79,7 @@
                         <viewLayoutGuide key="safeArea" id="dyb-7x-z02"/>
                     </view>
                     <navigationItem key="navigationItem" title="Find Friends" id="dNf-F2-mjA">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="xKu-Hh-XI8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xKu-Hh-XI8">
                             <connections>
                                 <action selector="dismissButtonTapped:" destination="asG-jx-wm7" id="FLj-mZ-6pt"/>
                             </connections>

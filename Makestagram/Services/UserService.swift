@@ -11,8 +11,8 @@ import FirebaseAuth.FIRUser
 import FirebaseDatabase
 
 struct UserService {
-    
-    static func observeChats(for user: User = User.current, withCompletion completion: @escaping (DatabaseReference, [Chat]) -> Void) -> DatabaseHandle {
+
+    static func observeChats(for user: User = User.current!, withCompletion completion: @escaping (DatabaseReference, [Chat]) -> Void) -> DatabaseHandle {
         let ref = Database.database().reference().child("chats").child(user.uid)
         
         return ref.observe(.value, with: { (snapshot) in
@@ -28,7 +28,7 @@ struct UserService {
     static func observeProfile(for user: User, completion: @escaping (DatabaseReference, User?, [Post]) -> Void) -> DatabaseHandle {
         let userRef = Database.database().reference().child("users").child(user.uid)
         return userRef.observe(.value, with: { snapshot in
-        
+            
             guard let user = User(snapshot: snapshot) else {
                 return completion(userRef, nil, [])
             }
@@ -39,58 +39,42 @@ struct UserService {
         })
     }
     
-    static func timeline(pageSize: UInt, lastPostKey: String? = nil, completion: @escaping ([Post]) -> Void) {
-        let currentUser = User.current
+    static func timeline(completion: @escaping ([Post]) -> Void) {
+        let currentUser = User.current!
+        let refListFollowing = Database.database().reference().child("following").child(currentUser.uid)
         
-        let ref = Database.database().reference().child("timeline").child(currentUser.uid)
-        var query = ref.queryOrderedByKey().queryLimited(toLast: pageSize)
-        if let lastPostKey = lastPostKey {
-            query = query.queryEnding(atValue: lastPostKey)
-        }
-        query.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot]
-                else { return completion([]) }
+        refListFollowing.observeSingleEvent(of: .value) { (snapshot) in
+            let refOfPosts = Database.database().reference().child("posts")
             
-            let dispatchGroup = DispatchGroup()
-            
-            var posts = [Post]()
-            
-            for postSnap in snapshot {
-                guard let postDict = postSnap.value as? [String : Any],
-                    let posterUID = postDict["poster_uid"] as? String
-                    else { continue }
-                
-                dispatchGroup.enter()
-                
-                PostService.show(forKey: postSnap.key, posterUID: posterUID) { (post) in
-                    if let post = post {
-                        posts.append(post)
-                    }
-                    
-                    dispatchGroup.leave()
+            if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                for single in children {
+                    refOfPosts.child(single.key).observeSingleEvent(of: .value, with: { (serverPosts) in
+                        guard let serverPosts = serverPosts.children.allObjects as? [DataSnapshot] else { return completion([]) }
+                        
+                        let dispatchGroup = DispatchGroup()
+                        
+                        let posts: [Post] = serverPosts.reversed().flatMap {
+                            guard let post = Post(snapshot: $0) else { return nil }
+                            
+                            dispatchGroup.enter()
+                            LikeService.isPostLiked(post) { (isLiked) in
+                                post.isLiked = isLiked
+                                dispatchGroup.leave()
+                            }
+                            return post
+                        }
+                        
+                        dispatchGroup.notify(queue: .main, execute: {
+                            completion(posts)
+                            
+                        })
+                    })
                 }
             }
-            
-            dispatchGroup.notify(queue: .main, execute: {
-                completion(posts.reversed())
-            })
-        })
+        }
     }
     
-    static func followers(for user: User, completion: @escaping ([String]) -> Void) {
-        let followersRef = Database.database().reference().child("followers").child(user.uid)
-
-        followersRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let followersDict = snapshot.value as? [String : Bool] else {
-                return completion([])
-            }
-            
-            let followersKeys = Array(followersDict.keys)
-            completion(followersKeys)
-        })
-    }
-    
-    static func following(for user: User = User.current, completion: @escaping ([User]) -> Void) {
+    static func following(for user: User = User.current!, completion: @escaping ([User]) -> Void) {
         let followingRef = Database.database().reference().child("following").child(user.uid)
         followingRef.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let followingDict = snapshot.value as? [String : Bool] else {
@@ -107,7 +91,6 @@ struct UserService {
                     if let user = user {
                         following.append(user)
                     }
-                    
                     dispatchGroup.leave()
                 }
             }
@@ -117,8 +100,23 @@ struct UserService {
         })
     }
     
+    static func followers(for user: User, completion: @escaping ([String]) -> Void) {
+        let followersRef = Database.database().reference().child("followers").child(user.uid)
+        
+        followersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let followersDict = snapshot.value as? [String : Bool] else {
+                return completion([])
+            }
+            
+            let followersKeys = Array(followersDict.keys)
+            completion(followersKeys)
+        })
+    }
+    
+    
+    
     static func usersExcludingCurrentUser(completion: @escaping ([User]) -> Void) {
-        let currentUser = User.current
+        let currentUser = User.current!
         let ref = Database.database().reference().child("users")
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot]
@@ -135,10 +133,6 @@ struct UserService {
                     }
                 }
             }
-            
-//            let users = snapshot.flatMap(User.init).filter { $0.uid != currentUser.uid }
-            print(users)
-            
             let dispatchGroup = DispatchGroup()
             users.forEach { (user) in
                 dispatchGroup.enter()
@@ -194,21 +188,17 @@ struct UserService {
             let dispatchGroup = DispatchGroup()
             
             let posts: [Post] =
-                snapshot
-                    .reversed()
-                    .flatMap {
-                        guard let post = Post(snapshot: $0)
-                            else { return nil }
-                        
-                        dispatchGroup.enter()
-                        
-                        LikeService.isPostLiked(post) { (isLiked) in
-                            post.isLiked = isLiked
-                            
-                            dispatchGroup.leave()
-                        }
-                        
-                        return post
+                snapshot.reversed().flatMap {
+                    guard let post = Post(snapshot: $0) else { return nil }
+                    
+                    dispatchGroup.enter()
+                    
+                    LikeService.isPostLiked(post) { (isLiked) in
+                        post.isLiked = isLiked
+                        dispatchGroup.leave()
+                    }
+                    
+                    return post
             }
             
             dispatchGroup.notify(queue: .main, execute: {
@@ -217,19 +207,3 @@ struct UserService {
         })
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

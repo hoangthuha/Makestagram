@@ -15,7 +15,7 @@ struct LikeService {
             return success(false)
         }
         
-        let currentUID = User.current.uid
+        let currentUID = User.current!.uid
         
         let likesRef = Database.database().reference().child("postLikes").child(key).child(currentUID)
         likesRef.setValue(true) { (error, _) in
@@ -49,7 +49,7 @@ struct LikeService {
         }
         
         let likesRef = Database.database().reference().child("postLikes").child(postKey)
-        likesRef.queryEqual(toValue: nil, childKey: User.current.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        likesRef.queryEqual(toValue: nil, childKey: User.current!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? [String : Bool] {
                 completion(true)
             } else {
@@ -63,7 +63,7 @@ struct LikeService {
             return success(false)
         }
         
-        let currentUID = User.current.uid
+        let currentUID = User.current!.uid
         
         let likesRef = Database.database().reference().child("postLikes").child(key).child(currentUID)
         likesRef.setValue(nil) { (error, _) in

@@ -23,7 +23,7 @@ struct ChatService {
         })
     }
     
-    static func observeChats(for user: User = User.current, withCompletion completion: @escaping (DatabaseReference, [Chat]) -> Void) -> DatabaseHandle {
+    static func observeChats(for user: User = User.current!, withCompletion completion: @escaping (DatabaseReference, [Chat]) -> Void) -> DatabaseHandle {
         let ref = Database.database().reference().child("chats").child(user.uid)
         
         return ref.observe(.value, with: { (snapshot) in
@@ -66,9 +66,9 @@ struct ChatService {
     }
     
     static func checkForExistingChat(with user: User, completion: @escaping (Chat?) -> Void) {
-        let members = [user, User.current]
+        let members = [user, User.current!]
         let hashValue = Chat.hash(forMembers: members)
-        let chatRef = Database.database().reference().child("chats").child(User.current.uid)
+        let chatRef = Database.database().reference().child("chats").child(User.current!.uid)
         let query = chatRef.queryOrdered(byChild: "memberHash").queryEqual(toValue: hashValue)
         
         query.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -96,7 +96,7 @@ struct ChatService {
                                         "lastMessage" : lastMessage,
                                         "lastMessageSent" : lastMessageSent]
         
-        let chatRef = Database.database().reference().child("chats").child(User.current.uid).childByAutoId()
+        let chatRef = Database.database().reference().child("chats").child(User.current!.uid).childByAutoId()
         chat.key = chatRef.key
         var multiUpdateValue = [String : Any]()
         

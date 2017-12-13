@@ -44,6 +44,7 @@ class MGPhotoHelper: NSObject {
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.sourceType = sourceType
                 imagePickerController.delegate = self
+                //imagePickerController.allowsEditing = true
                 
                 viewController.present(imagePickerController, animated: true)
             default:
@@ -55,9 +56,14 @@ class MGPhotoHelper: NSObject {
 
 extension MGPhotoHelper : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            completionHandler?(selectedImage)
+        if picker.allowsEditing {
+            if let sourceImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                completionHandler?(sourceImage)
+            }
+        } else {
+            if let sourceImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                completionHandler?(sourceImage)
+            }
         }
         picker.dismiss(animated: true)
     }

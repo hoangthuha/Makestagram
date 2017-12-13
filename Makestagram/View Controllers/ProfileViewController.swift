@@ -9,10 +9,14 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import Kingfisher
 
 class ProfileViewController: UIViewController {
     
+    let itemWidth = (UIScreen.main.bounds.size.width - (1 * 2)) / 3
+    
     var authHandle: AuthStateDidChangeListenerHandle?
+    let refreshControl = UIRefreshControl()
     
     var user: User!
     var posts = [Post]()
@@ -24,10 +28,27 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
         
-        user = user ?? User.current
+        self.configureCollectionView()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.init(kPostCountNotification), object: nil, queue: OperationQueue.main) { (notification) in
+            if let postCount = notification.object as? Int {
+                self.user.postCount = postCount
+                self.reloadTimeline()
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.init(kFollowingCountNotification), object: nil, queue: OperationQueue.main) { (notification) in
+            if let followingCount = notification.object as? Int {
+                self.user.followingCount = followingCount
+                self.collectionView.reloadData()
+            }
+        }
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        user = User.current
         navigationItem.title = user.username
         
         authHandle = Auth.auth().addStateDidChangeListener() { [unowned self] (auth, user) in
@@ -37,20 +58,40 @@ class ProfileViewController: UIViewController {
             self.view.window?.rootViewController = loginViewController
             self.view.window?.makeKeyAndVisible()
         }
+        
+        UserService.posts(for: user) { (posts) in
+            self.posts = posts
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @objc func configureCollectionView() {
+        refreshControl.addTarget(self, action: #selector(reloadTimeline), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+    
+    @objc func reloadTimeline() {
+        self.posts.removeAll()
+        
+        UserService.posts(for: User.current!, completion: { (posts) in
+            self.posts.append(contentsOf: posts)
+            self.collectionView.reloadData()
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+        })
     }
     
     deinit {
         if let authHandle = authHandle {
             Auth.auth().removeStateDidChangeListener(authHandle)
         }
+        NotificationCenter.default.removeObserver(self)
     }
-    
-}
-extension ProfileViewController : UICollectionViewDelegate {
-    
 }
 
-extension ProfileViewController : UICollectionViewDataSource {
+extension ProfileViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
@@ -62,30 +103,8 @@ extension ProfileViewController : UICollectionViewDataSource {
         cell.thumbImageView.kf.setImage(with: imageURL)
         return cell
     }
-}
-
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let columns: CGFloat = 3
-        let spacing: CGFloat = 1.5
-        let totalHorizontalSpacing = (columns - 1) * spacing
-        
-        let itemWidth = (collectionView.bounds.width - totalHorizontalSpacing) / columns
-        let itemSize = CGSize(width: itemWidth, height: itemWidth)
-        
-        return itemSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.5
-    }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         guard kind == UICollectionElementKindSectionHeader else {
             fatalError("Unexpected element kind.")
         }
@@ -104,6 +123,18 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
         headerView.delegate = self
         
         return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width: self.itemWidth, height: self.itemWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
     }
 }
 extension ProfileViewController: ProfileHeaderViewDelegate {

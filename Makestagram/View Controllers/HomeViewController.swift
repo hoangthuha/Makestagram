@@ -9,9 +9,9 @@
 import UIKit
 import Kingfisher
 
+
+
 class HomeViewController: UIViewController {
-    
-    let paginationHelper = MGPaginationHelper<Post>(serviceMethod: UserService.timeline)
     
     let refreshControl = UIRefreshControl()
     
@@ -26,31 +26,41 @@ class HomeViewController: UIViewController {
         return dateFormatter
     }()
     
+    deinit {
+        print("deinit HomeViewController!")
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        configureTableView()
-        reloadTimeline()
-        
-        UserService.posts(for: User.current) { (posts) in
-            self.posts = posts
+        UserService.timeline() { (posts) in
+            self.posts.append(contentsOf: posts)
             self.tableView.reloadData()
         }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.init(kPostCountNotification), object: nil, queue: OperationQueue.main) { (notification) in
+            // Implement code run when something changes
+            self.reloadTimeline()
+        }
+        
+        configureTableView()
     }
     
     @objc func reloadTimeline() {
-        self.paginationHelper.reloadData(completion: { [unowned self] (posts) in
-            self.posts = posts
+        self.posts.removeAll()
+        
+        UserService.timeline() { (posts) in
+            self.posts.append(contentsOf: posts)
+            self.tableView.reloadData()
             
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
             }
-            
-            self.tableView.reloadData()
-        })
+        }
     }
     
     @objc func configureTableView(){
@@ -65,7 +75,7 @@ class HomeViewController: UIViewController {
         let post = posts[indexPath.section]
         let poster = post.poster
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if poster.uid != User.current.uid {
+        if poster.uid != User.current!.uid {
             let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
                 PostService.flag(post)
                 
@@ -90,12 +100,14 @@ extension HomeViewController :  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard posts.count > 0 else { return UITableViewCell() }
+        
         let post = posts[indexPath.section]
         
         switch indexPath.row {
         case 0:
             let cell: PostHeaderCell = tableView.dequeueReusableCell()
-            cell.usernameLabel.text = User.current.username
+            cell.usernameLabel.text = post.poster.username
             cell.didTapOptionsButtonForCell = handleOptionsButtonTap(from:)
             
             return cell
@@ -103,7 +115,6 @@ extension HomeViewController :  UITableViewDataSource {
             let cell: PostImageCell = tableView.dequeueReusableCell()
             let imageURL = URL(string: post.imageURL)
             cell.postImageView.kf.setImage(with: imageURL)
-            
             return cell
         case 2:
             let cell: PostActionCell = tableView.dequeueReusableCell()
@@ -113,18 +124,6 @@ extension HomeViewController :  UITableViewDataSource {
             return cell
         default:
             fatalError("Error")
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section >= posts.count - 1 {
-            paginationHelper.paginate(completion: { [unowned self] (posts) in
-                self.posts.append(contentsOf: posts)
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
         }
     }
     
@@ -141,6 +140,7 @@ extension HomeViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard posts.count > 0 else { return 0 }
         
         switch indexPath.row {
         case 0:
