@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		601898431FD9221F0009B827 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601898421FD91F370009B827 /* GoogleService-Info.plist */; };
+		604971081FE22840005E0B31 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604971071FE22840005E0B31 /* PhotoViewController.swift */; };
+		6049710A1FE22896005E0B31 /* Photo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 604971091FE22896005E0B31 /* Photo.storyboard */; };
 		604C892E1FD0F98700493A68 /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C892D1FD0F98700493A68 /* LikeService.swift */; };
 		60817B8D1FD4ED53002B937D /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60817B8C1FD4ED53002B937D /* FollowService.swift */; };
 		60817B911FD4EFA9002B937D /* FindFriends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60817B901FD4EFA9002B937D /* FindFriends.storyboard */; };
@@ -69,6 +71,8 @@
 /* Begin PBXFileReference section */
 		40C5C7C4869C844CBDA31FB5 /* Pods-Makestagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makestagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Makestagram/Pods-Makestagram.debug.xcconfig"; sourceTree = "<group>"; };
 		601898421FD91F370009B827 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		604971071FE22840005E0B31 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		604971091FE22896005E0B31 /* Photo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Photo.storyboard; sourceTree = "<group>"; };
 		604C892D1FD0F98700493A68 /* LikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
 		60817B8C1FD4ED53002B937D /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
 		60817B901FD4EFA9002B937D /* FindFriends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FindFriends.storyboard; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 			children = (
 				60E8A4F61FCE54FF000C5401 /* Main.storyboard */,
 				60817BBD1FD6470D002B937D /* Profile.storyboard */,
+				604971091FE22896005E0B31 /* Photo.storyboard */,
 				60817B901FD4EFA9002B937D /* FindFriends.storyboard */,
 				60E8A5291FCFF130000C5401 /* Home.storyboard */,
 				60817BD21FD69569002B937D /* Chat.storyboard */,
@@ -233,6 +238,7 @@
 				60817BCA1FD69286002B937D /* ChatListViewController.swift */,
 				60817BCC1FD69299002B937D /* NewChatViewController.swift */,
 				60817BCE1FD692AE002B937D /* ChatViewController.swift */,
+				604971071FE22840005E0B31 /* PhotoViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "/Users/hoangthuha/Desktop/Makestagram/Makestagram/View Controllers";
@@ -398,6 +404,7 @@
 				60817BB61FD55A2F002B937D /* OpenSans-Regular.ttf in Resources */,
 				60E8A4D61FCE4896000C5401 /* Assets.xcassets in Resources */,
 				60817BB31FD55A2F002B937D /* OpenSans-Italic.ttf in Resources */,
+				6049710A1FE22896005E0B31 /* Photo.storyboard in Resources */,
 				60817BB21FD55A2F002B937D /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				60817BB11FD55A2F002B937D /* OpenSans-ExtraBold.ttf in Resources */,
 			);
@@ -511,6 +518,7 @@
 				60817BC51FD68486002B937D /* Chat.swift in Sources */,
 				60817B991FD53F56002B937D /* MGPaginationHelper.swift in Sources */,
 				60817BCB1FD69286002B937D /* ChatListViewController.swift in Sources */,
+				604971081FE22840005E0B31 /* PhotoViewController.swift in Sources */,
 				60817BD71FD69EAF002B937D /* NewChatUserCell.swift in Sources */,
 				60817B931FD4F0BE002B937D /* FindFriendsCell.swift in Sources */,
 				60817BC31FD65123002B937D /* ProfileHeaderView.swift in Sources */,

@@ -23,6 +23,7 @@ class ChatListViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = 71
         tableView.tableFooterView = UIView()
+        self.automaticallyAdjustsScrollViewInsets = false
         
         userChatsHandle = UserService.observeChats{ [weak self] (ref, chats) in
             self?.userChatsRef = ref

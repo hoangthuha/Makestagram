@@ -29,7 +29,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configureCollectionView()
+        user = User.current
+        navigationItem.title = user.username
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.init(kPostCountNotification), object: nil, queue: OperationQueue.main) { (notification) in
             if let postCount = notification.object as? Int {
@@ -45,11 +49,7 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        user = User.current
-        navigationItem.title = user.username
+        configureCollectionView()
         
         authHandle = Auth.auth().addStateDidChangeListener() { [unowned self] (auth, user) in
             guard user == nil else { return }
@@ -65,11 +65,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @objc func configureCollectionView() {
-        refreshControl.addTarget(self, action: #selector(reloadTimeline), for: .valueChanged)
-        collectionView.addSubview(refreshControl)
-    }
-    
     @objc func reloadTimeline() {
         self.posts.removeAll()
         
@@ -83,6 +78,11 @@ class ProfileViewController: UIViewController {
         })
     }
     
+    @objc func configureCollectionView() {
+        refreshControl.addTarget(self, action: #selector(reloadTimeline), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+    }
+    
     deinit {
         if let authHandle = authHandle {
             Auth.auth().removeStateDidChangeListener(authHandle)
@@ -91,18 +91,45 @@ class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ProfileViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize.init(width: self.itemWidth, height: self.itemWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+}
+
+extension ProfileViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostThumbImageCell", for: indexPath) as! PostThumbImageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"PostThumbImageCell", for: indexPath) as! PostThumbImageCell
         let post = posts[indexPath.row]
         let imageURL = URL(string: post.imageURL)
         cell.thumbImageView.kf.setImage(with: imageURL)
         return cell
+        
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? PostThumbImageCell else { return }
+        
+        let storyboard = UIStoryboard(name: "Photo", bundle: nil)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as? PhotoViewController else { return }
+        let post = posts[indexPath.row]
+        controller.post = post
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+   
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionElementKindSectionHeader else {
@@ -124,18 +151,7 @@ extension ProfileViewController : UICollectionViewDataSource, UICollectionViewDe
         
         return headerView
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: self.itemWidth, height: self.itemWidth)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
-    }
+  
 }
 extension ProfileViewController: ProfileHeaderViewDelegate {
     func didTapSettingsButton(_ button: UIButton, on headerView: ProfileHeaderView) {

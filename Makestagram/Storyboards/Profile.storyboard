@@ -35,7 +35,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FpH-Vg-ng0">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FpH-Vg-ng0">
                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                                                 </imageView>
                                             </subviews>
@@ -164,6 +164,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Zr5-Ob-hKJ" id="tzM-0j-DFZ"/>
+                        <segue destination="GKw-Ap-fiJ" kind="show" identifier="PhotoViewController" id="Zso-e5-Krh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xv-GT-0Ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,7 +177,15 @@
                 <viewControllerPlaceholder storyboardName="FindFriends" id="l5z-tS-aay" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ApO-Ib-YTl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501" y="208"/>
+            <point key="canvasLocation" x="454" y="9"/>
+        </scene>
+        <!--PhotoViewController-->
+        <scene sceneID="wgV-Hh-WRg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Photo" referencedIdentifier="PhotoViewController" id="GKw-Ap-fiJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b2i-2u-m0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480" y="298"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ei9-CL-5VQ">

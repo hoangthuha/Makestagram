@@ -38,7 +38,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.automaticallyAdjustsScrollViewInsets = false
         setupJSQMessagesViewController()
         tryObservingMessages()
     }

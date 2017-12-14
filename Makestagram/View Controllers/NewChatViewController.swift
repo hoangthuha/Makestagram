@@ -1,7 +1,7 @@
 //
 //  NewChatViewController.swift
 //  Makestagram
-//
+// Day la controller de xu ly v
 //  Created by Hoang Thu Ha on 5/12/17.
 //  Copyright © 2017 Hoang Thu Ha. All rights reserved.
 //
@@ -22,6 +22,8 @@ class NewChatViewController: UIViewController {
         tableView.dataSource = self
         nextButton.isEnabled = false
         tableView.tableFooterView = UIView()
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         
         UserService.following { [weak self] (following) in
             self?.following = following

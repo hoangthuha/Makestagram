@@ -25,24 +25,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Makestagram/Services/StorageService.swift"
-            timestampString = "534738094.608614"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "uploadImage(_:at:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Makestagram/Helpers/MGPhotoHelper.swift"
-            timestampString = "534832912.539271"
+            timestampString = "534914887.179739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
@@ -57,46 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Makestagram/Services/StorageService.swift"
-            timestampString = "534738094.610114"
+            filePath = "Makestagram/Services/FollowService.swift"
+            timestampString = "534914887.180048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "uploadImage(_:at:completion:)"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "followUser(_:forCurrentUserWithSuccess:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Makestagram.StorageService.uploadImage(__ObjC.UIImage, at: __ObjC.StorageReference, completion: (Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Makestagram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hoangthuha/Desktop/Makestagram/Makestagram/Services/StorageService.swift"
-                  timestampString = "534832912.64837"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "252">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.StorageMetadata&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static Makestagram.StorageService.uploadImage(__ObjC.UIImage, at: __ObjC.StorageReference, completion: (Swift.Optional&lt;Foundation.URL&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Makestagram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hoangthuha/Desktop/Makestagram/Makestagram/Services/StorageService.swift"
-                  timestampString = "534832912.652489"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -105,61 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Makestagram/View Controllers/ProfileViewController.swift"
-            timestampString = "534832912.53941"
+            filePath = "Makestagram/Services/FollowService.swift"
+            timestampString = "534914887.180307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Makestagram.ProfileViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Makestagram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hoangthuha/Desktop/Makestagram/Makestagram/View%20Controllers/ProfileViewController.swift"
-                  timestampString = "534832912.659418"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "41"
-                  endingLineNumber = "41"
-                  offsetFromSymbolStart = "1148">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Foundation.Notification) -&gt; () in Makestagram.ProfileViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Makestagram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/hoangthuha/Desktop/Makestagram/Makestagram/View%20Controllers/ProfileViewController.swift"
-                  timestampString = "534832912.662854"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Makestagram/View Controllers/ProfileViewController.swift"
-            timestampString = "534832912.546795"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "followUser(_:forCurrentUserWithSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

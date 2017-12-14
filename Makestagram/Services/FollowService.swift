@@ -24,22 +24,22 @@ struct FollowService {
             } else {
                 success(true)
                 Database.database().reference().child("users").child(currentUID).observeSingleEvent(of: .value) { (following) in
-                    if let user = User.init(snapshot: following) {
+                    if let myUser = User.init(snapshot: following) {
                         if currentUID != user.uid {
-                            user.followingCount = user.followingCount! + 1
+                            myUser.followingCount = myUser.followingCount! + 1
                         }
-                        Database.database().reference().child("users").child(currentUID).updateChildValues(user.dictValue)
-                        User.setCurrent(user)
+                        Database.database().reference().child("users").child(currentUID).updateChildValues(myUser.dictValue)
+                        User.setCurrent(myUser)
                         User.followingCountChange()
                     }
                 }
                 Database.database().reference().child("users").child(user.uid).observeSingleEvent(of: .value) { (following) in
-                    if let user = User.init(snapshot: following) {
+                    if let otherUser = User.init(snapshot: following) {
                         
                         if currentUID != user.uid {
-                            user.followerCount = user.followerCount! + 1
+                            otherUser.followerCount = otherUser.followerCount! + 1
                         }
-                        Database.database().reference().child("users").child(user.uid).updateChildValues(user.dictValue)
+                        Database.database().reference().child("users").child(user.uid).updateChildValues(otherUser.dictValue)
                     }
                 }
             }

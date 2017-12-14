@@ -66,11 +66,10 @@ struct PostService {
         Database.database().reference().child("users").child(currentUser.uid).observeSingleEvent(of: .value) { (snapshot) in
             if let user = User.init(snapshot: snapshot) {
                 user.postCount = user.postCount! + 1
-                Database.database().reference().child("users").child(currentUser.uid).updateChildValues(user.dictValue)
+        Database.database().reference().child("users").child(currentUser.uid).updateChildValues(user.dictValue)
                 User.setCurrent(user)
                 User.postCountChange()
             }
         }
-        
     }
 }

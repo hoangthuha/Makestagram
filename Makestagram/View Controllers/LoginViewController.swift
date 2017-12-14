@@ -37,7 +37,9 @@ extension LoginViewController: FUIAuthDelegate {
     func authUI(_ authUI: FUIAuth, didSignInWith user: FIRUser?, error: Error?) {
         
         if let error = error {
-            assertionFailure("Error signing in :\(error.localizedDescription)")
+            let alertVC = UIAlertController.init(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction.init(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
             return
         }
         
