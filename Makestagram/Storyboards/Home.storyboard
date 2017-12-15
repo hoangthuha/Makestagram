@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Makestagram-->
+        <!--Pandagram-->
         <scene sceneID="XKU-QJ-yIq">
             <objects>
                 <viewController id="FvF-N9-5jE" customClass="HomeViewController" customModule="Makestagram" customModuleProvider="target" sceneMemberID="viewController">
@@ -165,7 +165,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RNb-uE-mJl"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Makestagram" id="ZWo-Lh-344">
+                    <navigationItem key="navigationItem" title="Pandagram" id="ZWo-Lh-344">
                         <barButtonItem key="rightBarButtonItem" image="message" id="7WZ-wm-Met">
                             <connections>
                                 <segue destination="e0Y-JE-WVn" kind="presentation" id="e4t-i3-cgd"/>
@@ -173,11 +173,34 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="messageLabel" destination="f9y-Rv-cV0" id="DDL-yL-RAX"/>
+                        <outlet property="noItemView" destination="UAs-Ge-Kye" id="QBu-dj-B7c"/>
                         <outlet property="tableView" destination="tTi-ul-5rV" id="7c9-5B-jb2"/>
                         <outlet property="view" destination="tTi-ul-5rV" id="kux-ew-juJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3b-1V-Vc6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="UAs-Ge-Kye">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9y-Rv-cV0">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Follow more to see what they are up to!">
+                                    <attributes>
+                                        <font key="NSFont" size="19" name="Menlo-Regular"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <color key="highlightedColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <viewLayoutGuide key="safeArea" id="9F4-Ga-z9I"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-1882.608695652174" y="196.46739130434784"/>
         </scene>
@@ -210,21 +233,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvU-4N-Mlp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1369" y="196"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="QtA-Ep-oSI">
-            <objects>
-                <viewController id="7y6-42-PMQ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4Vb-Ue-wBO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="EBZ-Je-mrH"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LqB-Iv-k5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-941" y="178"/>
         </scene>
     </scenes>
     <resources>

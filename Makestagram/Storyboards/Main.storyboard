@@ -58,16 +58,6 @@
             </objects>
             <point key="canvasLocation" x="-2157" y="54"/>
         </scene>
-        <!--FindFriends-->
-        <scene sceneID="mgA-28-b4X">
-            <objects>
-                <viewControllerPlaceholder storyboardName="FindFriends" id="3ST-7F-WSY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="6Mk-9a-oG4"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t0M-k7-qRB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="117" y="163"/>
-        </scene>
         <!--Profile-->
         <scene sceneID="u2X-7U-Ky2">
             <objects>

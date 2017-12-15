@@ -79,7 +79,7 @@
                         <viewLayoutGuide key="safeArea" id="dyb-7x-z02"/>
                     </view>
                     <navigationItem key="navigationItem" title="Find Friends" id="dNf-F2-mjA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="xKu-Hh-XI8">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xKu-Hh-XI8">
                             <connections>
                                 <action selector="dismissButtonTapped:" destination="asG-jx-wm7" id="FLj-mZ-6pt"/>
                             </connections>

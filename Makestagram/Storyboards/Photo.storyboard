@@ -60,6 +60,10 @@
                                             <constraint firstAttribute="width" secondItem="HIV-SQ-tvO" secondAttribute="height" multiplier="1:1" id="bzi-MS-VxO"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="blackheart"/>
+                                        <state key="selected" image="redheart"/>
+                                        <connections>
+                                            <action selector="likeButtonTapped:" destination="pVm-o6-TzB" eventType="touchUpInside" id="9On-cB-J7I"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,6 +104,7 @@
                     </view>
                     <connections>
                         <outlet property="detailImage" destination="njH-bN-3VF" id="LLC-sZ-1GF"/>
+                        <outlet property="likeButton" destination="HIV-SQ-tvO" id="9uR-3j-9ou"/>
                         <outlet property="likeLabel" destination="I8Z-T6-Old" id="3nJ-fp-P12"/>
                         <outlet property="usernameLabel" destination="Zjk-KL-Bj8" id="2Fq-om-Lea"/>
                     </connections>
@@ -111,5 +116,6 @@
     </scenes>
     <resources>
         <image name="blackheart" width="24" height="24"/>
+        <image name="redheart" width="24" height="24"/>
     </resources>
 </document>

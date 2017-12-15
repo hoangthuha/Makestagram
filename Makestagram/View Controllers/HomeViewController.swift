@@ -9,10 +9,11 @@
 import UIKit
 import Kingfisher
 
-
-
 class HomeViewController: UIViewController {
     
+    @IBOutlet var noItemView: UIView!
+    
+    @IBOutlet weak var messageLabel: UILabel!
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var tableView: UITableView!
@@ -33,6 +34,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundView = messageLabel
+        messageLabel.textAlignment = NSTextAlignment.center
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -92,6 +96,7 @@ class HomeViewController: UIViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
 }
 
 extension HomeViewController :  UITableViewDataSource {

@@ -13,6 +13,9 @@ import Kingfisher
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet var noItemView: UIView!
+    @IBOutlet weak var noItemLabel: UILabel!
+    
     let itemWidth = (UIScreen.main.bounds.size.width - (1 * 2)) / 3
     
     var authHandle: AuthStateDidChangeListenerHandle?
@@ -28,6 +31,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.backgroundView = noItemLabel
+        noItemLabel.textAlignment = NSTextAlignment.center
         
         user = User.current
         navigationItem.title = user.username
@@ -115,6 +121,7 @@ extension ProfileViewController : UICollectionViewDataSource {
         let post = posts[indexPath.row]
         let imageURL = URL(string: post.imageURL)
         cell.thumbImageView.kf.setImage(with: imageURL)
+        collectionView.reloadItems(at: [indexPath])
         return cell
         
     }
