@@ -13,9 +13,6 @@ import Kingfisher
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet var noItemView: UIView!
-    @IBOutlet weak var noItemLabel: UILabel!
-    
     let itemWidth = (UIScreen.main.bounds.size.width - (1 * 2)) / 3
     
     var authHandle: AuthStateDidChangeListenerHandle?
@@ -32,8 +29,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundView = noItemLabel
-        noItemLabel.textAlignment = NSTextAlignment.center
         
         user = User.current
         navigationItem.title = user.username
@@ -113,6 +108,11 @@ extension ProfileViewController : UICollectionViewDelegateFlowLayout {
 
 extension ProfileViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if posts.count == 0 {
+            self.collectionView.setEmptyMessage("Upload more photos to let your friends see!")
+        } else {
+            self.collectionView.restore()
+        }
         return posts.count
     }
     
@@ -186,5 +186,27 @@ extension ProfileViewController : UITableViewDelegate {
         performSegue(withIdentifier: "findFriend", sender: self)
     }
 }
+
+extension UICollectionView {
+    
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "Menlo", size: 20)
+        messageLabel.sizeToFit()
+        
+        self.backgroundView = messageLabel;
+        self.indicatorStyle = .default
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+        self.indicatorStyle = .default
+    }
+}
+
 
 

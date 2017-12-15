@@ -164,33 +164,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Zr5-Ob-hKJ" id="tzM-0j-DFZ"/>
-                        <outlet property="noItemLabel" destination="0Q5-7V-G5m" id="g2H-HN-eAN"/>
-                        <outlet property="noItemView" destination="YW8-p1-QMe" id="Li1-fd-zyd"/>
                         <segue destination="GKw-Ap-fiJ" kind="show" identifier="PhotoViewController" id="Zso-e5-Krh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xv-GT-0Ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="YW8-p1-QMe">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q5-7V-G5m">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <attributedString key="attributedText">
-                                <fragment content="Upload more photos to let your friends see">
-                                    <attributes>
-                                        <font key="NSFont" size="17" name="Menlo-Regular"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                            <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <viewLayoutGuide key="safeArea" id="Lap-BN-dJu"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="-127.2" y="277.51124437781112"/>
         </scene>

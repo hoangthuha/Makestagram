@@ -11,15 +11,10 @@ import Kingfisher
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet var noItemView: UIView!
-    
-    @IBOutlet weak var messageLabel: UILabel!
-    let refreshControl = UIRefreshControl()
-    
     @IBOutlet weak var tableView: UITableView!
     
+    let refreshControl = UIRefreshControl()
     var posts = [Post]()
-    
     let timesStampFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -34,9 +29,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.backgroundView = messageLabel
-        messageLabel.textAlignment = NSTextAlignment.center
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -105,7 +97,9 @@ extension HomeViewController :  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard posts.count > 0 else { return UITableViewCell() }
+        guard posts.count > 0
+            else {
+            return UITableViewCell() }
         
         let post = posts[indexPath.section]
         
@@ -145,8 +139,15 @@ extension HomeViewController :  UITableViewDataSource {
 }
 
 extension HomeViewController : UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
+        if posts.count == 0 {
+            self.tableView.setEmptyMessages("Follow more to see what they are up to!")
+        } else {
+            self.tableView.restores()
+        }
         return posts.count
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -190,5 +191,25 @@ extension HomeViewController: PostActionCellDelegate {
                 self.configureCell(cell, with: post)
             }
         }
+    }
+}
+
+extension UITableView {
+    func setEmptyMessages(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "Menlo", size: 20)
+        messageLabel.sizeToFit()
+        
+        self.backgroundView = messageLabel;
+        self.separatorStyle = .none;
+    }
+    
+    func restores() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }

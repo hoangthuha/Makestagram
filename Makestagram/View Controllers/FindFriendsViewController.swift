@@ -21,6 +21,7 @@ class FindFriendsViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.rowHeight = 71
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +39,11 @@ class FindFriendsViewController: UIViewController {
 extension FindFriendsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if users.count == 0 {
+            self.tableView.setEmptyMessage("Don't have any friends available")
+        } else {
+            self.tableView.restore()
+        }
         return users.count
     }
     
@@ -71,5 +77,26 @@ extension FindFriendsViewController: FindFriendsCellDelegate {
             followee.isFollowed = !followee.isFollowed
             self.tableView.reloadRows(at: [indexPath], with: .none)
         }
+    }
+}
+
+extension UITableView {
+    
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: "Menlo", size: 20)
+        messageLabel.sizeToFit()
+        
+        self.backgroundView = messageLabel;
+        self.separatorStyle = .none;
+    }
+    
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
     }
 }
