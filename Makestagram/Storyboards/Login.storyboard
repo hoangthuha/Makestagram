@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Kailasa.ttc">
-            <string>Kailasa</string>
-        </array>
         <array key="Menlo.ttc">
             <string>Menlo-Bold</string>
             <string>Menlo-Regular</string>
@@ -30,12 +27,12 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="mw5-1y-GAq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for new Pandagram update, you can see when your friends don't invite you somewhere." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nv-w3-UoA">
-                                <rect key="frame" x="10" y="373" width="300" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for new Pandagram update, you can see when your friends don't invite you somewhere." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nv-w3-UoA">
+                                <rect key="frame" x="10" y="378" width="300" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="vC9-dU-np3"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -70,7 +67,7 @@
                             <constraint firstItem="VO7-AY-F05" firstAttribute="trailing" secondItem="kxb-84-1jl" secondAttribute="trailing" constant="10" id="6aU-2z-nmV"/>
                             <constraint firstItem="VO7-AY-F05" firstAttribute="bottom" secondItem="Wy9-Ak-sOq" secondAttribute="bottom" constant="30" id="8UT-K4-fIl"/>
                             <constraint firstItem="1nv-w3-UoA" firstAttribute="leading" secondItem="VO7-AY-F05" secondAttribute="leading" constant="10" id="Ei1-42-t6M"/>
-                            <constraint firstItem="Wy9-Ak-sOq" firstAttribute="top" secondItem="1nv-w3-UoA" secondAttribute="bottom" constant="25" id="JvH-7J-Dcd"/>
+                            <constraint firstItem="Wy9-Ak-sOq" firstAttribute="top" secondItem="1nv-w3-UoA" secondAttribute="bottom" constant="20" id="JvH-7J-Dcd"/>
                             <constraint firstItem="mw5-1y-GAq" firstAttribute="leading" secondItem="VO7-AY-F05" secondAttribute="leading" id="Lsh-52-vka"/>
                             <constraint firstItem="mw5-1y-GAq" firstAttribute="bottom" secondItem="VO7-AY-F05" secondAttribute="bottom" id="OcE-7Z-ehu"/>
                             <constraint firstItem="kxb-84-1jl" firstAttribute="leading" secondItem="VO7-AY-F05" secondAttribute="leading" constant="10" id="fj4-gE-oQI"/>
@@ -83,6 +80,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="LCp-vw-chT"/>
                     <connections>
+                        <outlet property="loginButton" destination="Wy9-Ak-sOq" id="ieP-uf-d47"/>
                         <segue destination="MPi-ww-22G" kind="show" identifier="toCreateUsername" id="cO5-c2-PxY"/>
                     </connections>
                 </viewController>

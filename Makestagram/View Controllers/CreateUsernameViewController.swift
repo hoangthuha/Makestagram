@@ -17,6 +17,8 @@ class CreateUsernameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextButton.layer.cornerRadius = 10
+        nextButton.clipsToBounds = true
         
     }
     

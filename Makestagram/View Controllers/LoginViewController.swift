@@ -15,6 +15,7 @@ import FirebaseGoogleAuthUI
 typealias FIRUser = FirebaseAuth.User
 
 class LoginViewController: UIViewController {
+    @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         guard let authUI = FUIAuth.defaultAuthUI()
@@ -30,6 +31,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
     }
     
 }
