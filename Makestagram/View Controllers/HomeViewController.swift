@@ -204,6 +204,7 @@ extension UITableView {
         messageLabel.font = UIFont(name: "Menlo", size: 20)
         messageLabel.sizeToFit()
         
+        
         self.backgroundView = messageLabel;
         self.separatorStyle = .none;
     }

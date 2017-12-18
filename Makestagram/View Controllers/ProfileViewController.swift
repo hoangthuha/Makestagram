@@ -109,7 +109,7 @@ extension ProfileViewController : UICollectionViewDelegateFlowLayout {
 extension ProfileViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if posts.count == 0 {
-            self.collectionView.setEmptyMessage("Upload more photos to let your friends see!")
+            self.collectionView.setEmptyMessage("Upload more photos to let your friends can see!")
         } else {
             self.collectionView.restore()
         }

@@ -30,7 +30,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="mw5-1y-GAq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for new Pandagram update, you can see when your friends don't invite you somewhere" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nv-w3-UoA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for new Pandagram update, you can see when your friends don't invite you somewhere." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nv-w3-UoA">
                                 <rect key="frame" x="10" y="373" width="300" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="vC9-dU-np3"/>
@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig" translatesAutoresizingMaskIntoConstraints="NO" id="Hrw-yM-Y7u">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pandaface" translatesAutoresizingMaskIntoConstraints="NO" id="Hrw-yM-Y7u">
                                 <rect key="frame" x="0.0" y="318" width="320" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="ZcW-VK-4Pj"/>
@@ -114,12 +114,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9E-hF-t0y">
-                                <rect key="frame" x="35" y="85" width="250" height="80"/>
+                                <rect key="frame" x="20" y="85" width="280" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="bjG-i3-zwl"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Add a username so           you can find your pig.">
+                                    <fragment content="Add a username so           you can make more friends.">
                                         <attributes>
                                             <font key="NSFont" size="17" name="Menlo-Regular"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -128,20 +128,6 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYK-6k-Xpe">
-                                <rect key="frame" x="35" y="278" width="250" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Lkz-Iq-yg9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <state key="normal" title="Find my pig!">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextButtonTapped:" destination="MPi-ww-22G" eventType="touchUpInside" id="z2m-hA-fwp"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AWo-WQ-5qO">
                                 <rect key="frame" x="35" y="205" width="250" height="40"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -152,11 +138,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYK-6k-Xpe">
+                                <rect key="frame" x="35" y="264" width="250" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Lkz-Iq-yg9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <state key="normal" title="Find more friends!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="MPi-ww-22G" eventType="touchUpInside" id="z2m-hA-fwp"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Hrw-yM-Y7u" firstAttribute="top" secondItem="TYK-6k-Xpe" secondAttribute="bottom" id="3Vu-4y-y5s"/>
-                            <constraint firstItem="mPF-IN-4Qc" firstAttribute="trailing" secondItem="g9E-hF-t0y" secondAttribute="trailing" constant="35" id="61w-SV-08N"/>
+                            <constraint firstItem="Hrw-yM-Y7u" firstAttribute="top" secondItem="TYK-6k-Xpe" secondAttribute="bottom" constant="20" id="3Vu-4y-y5s"/>
+                            <constraint firstItem="mPF-IN-4Qc" firstAttribute="trailing" secondItem="g9E-hF-t0y" secondAttribute="trailing" constant="20" id="61w-SV-08N"/>
                             <constraint firstItem="Ri7-p5-y1h" firstAttribute="leading" secondItem="mPF-IN-4Qc" secondAttribute="leading" constant="35" id="C4f-xN-qPB"/>
                             <constraint firstItem="AWo-WQ-5qO" firstAttribute="leading" secondItem="mPF-IN-4Qc" secondAttribute="leading" constant="35" id="COq-4r-naQ"/>
                             <constraint firstItem="g9E-hF-t0y" firstAttribute="top" secondItem="Ri7-p5-y1h" secondAttribute="bottom" constant="5" id="PXZ-d4-xAk"/>
@@ -168,7 +168,7 @@
                             <constraint firstItem="Hrw-yM-Y7u" firstAttribute="bottom" secondItem="mPF-IN-4Qc" secondAttribute="bottom" id="k5G-9i-EPY"/>
                             <constraint firstItem="mPF-IN-4Qc" firstAttribute="trailing" secondItem="TYK-6k-Xpe" secondAttribute="trailing" constant="35" id="n6e-49-Wp2"/>
                             <constraint firstItem="TYK-6k-Xpe" firstAttribute="leading" secondItem="mPF-IN-4Qc" secondAttribute="leading" constant="35" id="opH-dV-TaF"/>
-                            <constraint firstItem="g9E-hF-t0y" firstAttribute="leading" secondItem="mPF-IN-4Qc" secondAttribute="leading" constant="35" id="sNK-7I-fcN"/>
+                            <constraint firstItem="g9E-hF-t0y" firstAttribute="leading" secondItem="mPF-IN-4Qc" secondAttribute="leading" constant="20" id="sNK-7I-fcN"/>
                             <constraint firstItem="AWo-WQ-5qO" firstAttribute="top" secondItem="g9E-hF-t0y" secondAttribute="bottom" constant="40" id="zOr-Jd-tSY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mPF-IN-4Qc"/>
@@ -202,6 +202,6 @@
     </scenes>
     <resources>
         <image name="panda" width="458" height="550"/>
-        <image name="pig" width="1024" height="676"/>
+        <image name="pandaface" width="1200" height="675"/>
     </resources>
 </document>
